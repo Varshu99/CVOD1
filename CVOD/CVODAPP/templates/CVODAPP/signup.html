@@ -1,0 +1,65 @@
+{% extends 'CVODAPP/base.html' %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="col-md-6 mx-auto card p-4 shadow-lg">
+    <h2 class="text-center mb-4">Create Account</h2>
+
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <input type="text" name="username" class="form-control" placeholder="Username" required>
+        </div>
+
+        <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Email" required>
+        </div>
+
+        <div class="mb-3 position-relative">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+            <button type="button" id="togglePassword" class="btn btn-outline-secondary position-absolute end-0 top-0 mt-1 me-1" style="height:38px;">👁️</button>
+        </div>
+
+        <div class="mb-3 position-relative">
+            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" required>
+            <button type="button" id="toggleConfirmPassword" class="btn btn-outline-secondary position-absolute end-0 top-0 mt-1 me-1" style="height:38px;">👁️</button>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+    </form>
+
+    <p class="mt-3 text-center">
+        Already have an account? <a href="{% url 'signin' %}">Sign In</a>
+    </p>
+</div>
+
+<script>
+    const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('password');
+    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+    const confirmPassword = document.getElementById('confirm_password');
+
+    togglePassword.addEventListener('click', function () {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.textContent = type === 'password' ? '👁️' : '🙈';
+    });
+
+    toggleConfirmPassword.addEventListener('click', function () {
+        const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        confirmPassword.setAttribute('type', type);
+        this.textContent = type === 'password' ? '👁️' : '🙈';
+    });
+</script>
+{% endblock %}

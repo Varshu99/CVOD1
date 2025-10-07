@@ -1,0 +1,115 @@
+{% extends 'CVODAPP/base.html' %}
+{% load static %}
+{% block title %} Sick Bed Services -reset{% endblock %}  
+{% block content %}
+<style>
+    .reset-page {
+        background: url("{% static 'images/background.png' %}") no-repeat center center;
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .reset-container {
+        background: transparent;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        z-index: 1;
+        position: relative;
+    }
+
+    .reset-container h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .btn-submit {
+        width: 100%;
+        background-color: #5c67f2;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn-submit:hover {
+        background-color: #434ce4;
+    }
+
+    .signin-link {
+        display: block;
+        text-align: center;
+        margin-top: 15px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .signin-link:hover {
+        text-decoration: underline;
+    }
+
+    .message-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 15px;
+    }
+
+    .message-list li {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      
+    }
+
+    .message-list li.error {
+        
+        color: red;
+    }
+    
+    .message-list li.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+</style>
+
+<div class="reset-page">
+    <div class="reset-container">
+        <h2>Reset Password</h2>
+
+        {% if messages %}
+            <ul class="message-list">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="POST" action="{% url 'resetpass' username=username %}">
+            {% csrf_token %}
+            <input type="password" name="new_password" class="form-control" placeholder="Enter your new password" required>
+            <input type="password" name="confirm_password" class="form-control" placeholder="Confirm new password" required>
+            <button type="submit" class="btn-submit">Reset Password</button>
+        </form>
+
+        <a href="{% url 'signin' %}" class="signin-link">Back to Sign In</a>
+    </div>
+</div>
+{% endblock %}

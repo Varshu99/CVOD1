@@ -18,11 +18,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from CVODAPP import views
-
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', views.main, name='main'),  # root path
-    path('main/', views.main, name='main-page'),  # optional
+
+
+    path('', views.index, name='index'),  
+    path('main/',views.main, name='main'),
+    path('base/', views.base, name='base'),
+    path('logout/', views.logout, name='logout'),
+   path('forgot/', views.forgot, name='forgot'),
+    path('resetpass/<str:username>/', views.resetpass, name='resetpass'),
+    path('signup/', views.signup, name='signup'),
+    path('signin/', views.signin, name='signin'),
+
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
