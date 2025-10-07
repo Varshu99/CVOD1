@@ -1,11 +1,696 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freight Offers Settings</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 40px;
+    }
+
+    .container {
+          max-width: 85%;
+      display: flex;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 265px;
+      background: #f2f2f2;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #777;
+      padding: 12px 20px;
+      display: block;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .sidebar a.active {
+      background-color: #184d61;
+      color: white;
+      font-weight: 600;
+      border-radius: 0 20px 20px 0;
+    }
+
+    .sidebar a:hover {
+      background-color: #184d61;
+      color: white;
+    }
+
+    /* Main Content */
+    .content {
+      flex: 1;
+      padding: 30px 40px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #184d61;
+    }
+
+    /* .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    input[type="number"],
+    select {
+      width: 120px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    /* Toggle Switch 
+    .toggle {
+      position: relative;
+      display: inline-block;
+      width: 46px;
+      height: 22px;
+      margin-right: 8px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      border-radius: 22px;
+      transition: 0.4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+
+    input:checked + .slider {
+      background-color: #e84d6c;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+
+    .toggle-label {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .toggle-text {
+      margin-left: 10px;
+      color: #666;
+      font-weight: 500;
+    } */
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+      }
+
+      .sidebar a {
+        flex: 1;
+        text-align: center;
+        border-radius: 0;
+      }
+
+      .content {
+        padding: 20px;
+      }
+    }
+
+
+    /* from css */
+  .form-container {
+    margin-top: 7%;
+    margin-left: 10%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 650px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+    }
+    .heading{
+      margin-left: 21%;
+    }
+  </style>
 </head>
 <body>
-    <h1>hello</h1>
+  <div class="container">
+    <div class="sidebar">
+      <a class="active" data-tab="Employee-Management-System">Employee Management System</a>
+      <a data-tab="Timesheet-System">Timesheet System</a>
+      <a data-tab="Leave-Management-System">Leave Management System</a>
+      <a data-tab="Donor/Volunteer-Management-System">Donor/Volunteer Management System</a>
+      <a data-tab="Visitor-Management-System">Visitor Management System</a>
+      <a data-tab="Vendor-Management-System">Vendor Management System</a>
+      <a data-tab="Event-Management-System">Event Management System</a>
+      <a data-tab="MDM">MDM (Master Data)</a>
+      <a data-tab="Request-Management-System">Request Management System</a>
+      <a data-tab="Inventory-Management-System">Inventory Management System</a>
+      <a data-tab="Asset-Management-System">Asset Management System</a>
+      <a data-tab="Fleet-Management-System">Fleet Management System</a>
+      <a data-tab="Donation-box">Donation box (Daan Peti) & ACH Module</a>
+      <a data-tab="Donation-Module">Donation Module</a>
+      <a data-tab="Financial-Asset-Module">Financial Asset Module</a>
+      <a data-tab="Expense-Module">Expense Module</a>
+      <a data-tab="Medical-Module">Medical Module</a>
+      <a data-tab="Rehabilitation-Module">Rehabilitation Module</a>
+      <a data-tab="Adoption-Module">Adoption Module</a>
+      <a data-tab="Trees-Module">Trees Module</a>
+      <a data-tab="Seeds-Module">Seeds Module</a>
+
+    </div>
+
+    <div class="content">
+
+      <!-- Freight Offers -->
+      <div class="tab-content" id="Employee-Management-System">
+        <div>
+<h1 class="heading">Employee management System</h1>
+
+</div>
+   <div class="form-container">
+  <!-- <h2>Personal Details</h2> -->
+  <form id="multiStepForm">
+
+    <!-- Generate 12 steps -->
+    <div class="form-step active" id="step1">
+      <h3>Personal Details</h3>
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" >
+      </div>
+       <div class="form-group">
+        <label>Middle Name</label>
+        <input type="text" >
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" >
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <input type="email" >
+      </div>
+       <div class="form-group">
+        <label>Date Of Birth</label>
+        <input type="email" >
+      </div>
+       <div class="form-group">
+        <label>Marital status</label>
+        <input type="email" >
+      </div>
+       <div class="form-group">
+        <label>Blood Group</label>
+        <input type="email" >
+      </div>
+       <div class="form-group">
+        <label>Nationality</label>
+        <input type="email" >
+      </div>
+      <div class="button-group">
+        <div></div>
+        <button type="button" class="next">Next</button>
+      </div>
+    </div>
+
+    <div class="form-step" id="step2">
+      <h3>Biographical Details</h3>
+      <div class="form-group">
+        <label>Mother Name</label>
+        <input type="text" >
+      </div>
+      <div class="form-group">
+        <label>Father Name</label>
+        <input type="text" >
+      </div>
+      <div class="form-group">
+        <label>Spouse Name</label>
+        <input type="number" >
+      </div>
+        <div class="form-group">
+        <label>Launguage Name</label>
+        <input type="number" >
+      </div>
+      <div class="button-group">
+        <button type="button" class="prev">Previous</button>
+        <button type="button" class="next">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="form-step" id="step3">
+      <h3>Identification Details</h3>
+      <div class="form-group">
+        <label>Pan Number</label>
+        <input type="text" >
+      </div>
+      <div class="form-group">
+        <label>Adhar Number</label>
+        <input type="text" >
+      </div>
+      <div class="form-group">
+        <label>Passport Number</label>
+        <input type="number" >
+      </div>
+       <div class="form-group">
+        <label>Driving license Number</label>
+        <input type="number" >
+      </div>
+       <div class="form-group">
+        <label>Voter ID</label>
+        <input type="number" >
+      </div>
+      <div class="button-group">
+        <button type="button" class="prev">Previous</button>
+        <button type="button" class="next">Next</button>
+      </div>
+    </div>
+
+    <!-- Steps 4-11 -->
+    <div class="form-step" id="step4">
+      <h3>Contact Information</h3>
+      <div class="form-group"><label>
+        Personel Email
+      </label><input type="text" ></div>
+      <div class="form-group"><label>
+        Office Email
+      </label><input type="text"></div>
+      <div class="form-group"><label>
+        Emergency Contact Number
+      </label><input type="text"></div>
+       <div class="form-group"><label>
+        Relation 
+      </label><input type="text"></div>
+      <div class="button-group">
+        <button type="button" class="prev">Previous</button>
+        <button type="button" class="next">Next</button>
+      </div>
+    </div>
+
+    <div class="form-step" id="step5">
+      <h3>Address Details</h3>
+      <div class="form-group"><label>Current Address</label><input type="text" ></div>
+      <div class="form-group"><label>Permanent Address</label><input type="text"></div>
+      <div class="form-group"><label>City</label><input type="text"></div>
+      <div class="form-group"><label>State</label><input type="text"></div>
+      <div class="form-group"><label>Postal Code</label><input type="text"></div>
+      <div class="form-group"><label>Country</label><input type="text"></div>
+      <div class="button-group">
+        <button type="button" class="prev">Previous</button>
+        <button type="button" class="next">Next</button>
+      </div>
+    </div>
+
+    <div class="form-step" id="step6">
+      <h3>Dependent Details</h3>
+      <div class="form-group"><label>Dependent Name</label><input type="text" ></div>
+      <div class="form-group"><label>Relationship</label><input type="text"></div>
+      <div class="form-group"><label>Date of birth</label><input type="text"></div>
+            <div class="form-group"><label>Age</label><input type="text"></div>
+
+      <div class="button-group">
+        <button type="button" class="prev">Previous</button>
+        <button type="button" class="next">Next</button>
+      </div>
+    </div>
+
+    <div class="form-step" id="step7">
+      <h3>Bank Account Details</h3>
+      <div class="form-group"><label>Bank Name</label><input type="text" ></div>
+      <div class="form-group"><label>Account Number</label><input type="text"></div>
+      <div class="form-group"><label>IFSC Number</label><input type="text"></div>
+      <div class="form-group"><label>Branch Name</label><input type="text"></div>
+      <div class="form-group"><label>Account Type</label><input type="text"></div>
+      <div class="button-group">
+        <button type="button" class="prev">Previous</button>
+        <button type="button" class="next">Next</button>
+      </div>
+    </div>
+
+    <div class="form-step" id="step8">
+      <h3>Nomination Details</h3>
+      <div class="form-group"><label>Nomination Name</label><input type="text" ></div>
+      <div class="form-group"><label>Relationship</label><input type="text" ></div>
+      <div class="form-group"><label>Nomination Contact Number</label><input type="text" ></div>
+      <div class="button-group">
+        <button type="button" class="prev">Previous</button>
+        <button type="button" class="next">Next</button>
+      </div>
+    </div>
+
+    <div class="form-step" id="step9">
+      <h3>Reporting & Job Details</h3>
+      <div class="form-group"><label>Reporting Manager</label><input type="text"></div>
+      <div class="form-group"><label>Department</label><input type="text"></div>
+      <div class="form-group"><label>Designation</label><input type="text"></div>
+      <div class="form-group"><label>Employee Type</label><input type="text"></div>
+      <div class="form-group"><label>Work Location</label><input type="text"></div>
+      <div class="form-group"><label>Joining Date</label><input type="text"></div>
+      <div class="form-group"><label>Probation end date</label><input type="text"></div>
+      <div class="form-group"><label>Employeement Status</label><input type="text"></div>
+<div class="button-group">
+        <button type="button" class="prev">Previous</button>
+        <button type="button" class="next">Next</button>
+      </div>
+    </div>
+
+    <div class="form-step" id="step10">
+      <h3>Compensation Details</h3>
+      <div class="form-group"><label>Basic Salary</label><input type="text"></div>
+      <div class="form-group"><label>HRA</label><input type="text"></div>
+      <div class="form-group"><label>Other Allowances
+</label><input type="text"></div>
+      <div class="form-group"><label>Gross Salary</label><input type="text"></div>
+      <div class="form-group"><label>Net Salary</label><input type="text"></div>
+      <div class="form-group"><label>pf_contribution</label><input type="text"></div>
+      <div class="form-group"><label>tax_deduction</label><input type="text"></div>
+      <div class="button-group">
+        <button type="button" class="prev">Previous</button>
+        <button type="button" class="next">Next</button>
+      </div>
+    </div>
+
+    <div class="form-step" id="step11">
+      <h3>Interest Areas</h3>
+      <div class="form-group"><label>skills
+</label><input type="text"></div>
+      <div class="form-group"><label>hobbies</label><input type="text"></div>
+            <div class="form-group"><label>certifications</label><input type="text"></div>
+      <div class="form-group"><label>Training completed</label><input type="text"></div>
+
+      <div class="button-group">
+        <button type="button" class="prev">Previous</button>
+        <button type="button" class="next">Next</button>
+      </div>
+    </div>
+
+    <div class="form-step" id="step12">
+      <h3>Onboarding / Offboarding</h3>
+      <div class="form-group"><label>offer_date</label><input type="text"></div>
+      <div class="form-group"><label>background_verification</label><input type="text"></div>
+      <div class="form-group"><label>document_submission</label><input type="text"></div>
+      <div class="form-group"><label>exit_date</label><input type="text"></div>
+      <div class="form-group"><label>exit_reason</label><input type="text"></div>
+      <div class="form-group"><label>clearance_status</label><input type="text"></div>
+      <div class="button-group">
+        <button type="button" class="prev">Previous</button>
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+      </div>
+
+      <!-- Vehicle Offers -->
+      <div class="tab-content" id="Timesheet-System" style="display:none;">
+        <h2>Vehicle Offers</h2>
+        <p>Vehicle Offers content goes here.</p>
+      </div>
+
+      <!-- Freight Searches -->
+      <div class="tab-content" id="Leave-Management-System" style="display:none;">
+        <h2>Freight Searches</h2>
+        <p>Freight Searches content goes here.</p>
+      </div>
+
+      <!-- Vehicle Searches -->
+      <div class="tab-content" id="Donor/Volunteer-Management-System" style="display:none;">
+        <h2>Vehicle Searches</h2>
+        <p>Vehicle Searches content goes here.</p>
+      </div>
+
+      <!-- Interface -->
+      <div class="tab-content" id="Visitor-Management-System" style="display:none;">
+        <h2>Interface</h2>
+        <p>Interface settings go here.</p>
+      </div>
+
+      <!-- General -->
+      <div class="tab-content" id="Vendor-Management-System" style="display:none;">
+        <h2>General</h2>
+        <p>General settings go here.</p>
+      </div>
+
+      <!-- Event-Management-System -->
+      <div class="tab-content" id="Event-Management-System" style="display:none;">
+        <h2>Technical</h2>
+        <p>Technical settings go here.</p>
+      </div>
+
+      <!-- MDM -->
+      <div class="tab-content" id="MDM" style="display:none;">
+        <h2>Smart Route</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Request-Management-System -->
+      <div class="tab-content" id="Request-Management-System" style="display:none;">
+        <h2>Request-Management-System</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Inventory-Management-System -->
+      <div class="tab-content" id="Inventory-Management-System" style="display:none;">
+        <h2>Inventory-Management-System</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Asset-Management-System -->
+      <div class="tab-content" id="Asset-Management-System" style="display:none;">
+        <h2>Smart Route</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Fleet-Management-System -->
+      <div class="tab-content" id="Fleet-Management-System" style="display:none;">
+        <h2>Smart Route</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Donation-box -->
+      <div class="tab-content" id="Donation-box" style="display:none;">
+        <h2>Smart Route</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Donation-Module -->
+      <div class="tab-content" id="Donation-Module" style="display:none;">
+        <h2>Smart Route</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Financial-Asset-Module -->
+      <div class="tab-content" id="Financial-Asset-Module" style="display:none;">
+        <h2>Smart Route</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Expense-Module -->
+      <div class="tab-content" id="Expense-Module" style="display:none;">
+        <h2>Smart Route</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Medical-Module -->
+      <div class="tab-content" id="Medical-Module" style="display:none;">
+        <h2>Medical-Module</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Rehabilitation-Module -->
+      <div class="tab-content" id="Rehabilitation-Module" style="display:none;">
+        <h2>Rehabilitation-Module</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Adoption-Module -->
+      <div class="tab-content" id="Adoption-Module" style="display:none;">
+        <h2>Adoption-Module</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Trees-Module -->
+      <div class="tab-content" id="Trees-Module" style="display:none;">
+        <h2>Trees-Module</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+
+       <!-- Seeds-Module -->
+      <div class="tab-content" id="Seeds-Module" style="display:none;">
+        <h2>Seeds-Module</h2>
+        <p>Smart Route settings go here.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+// form script
+
+ const nextBtns = document.querySelectorAll('.next');
+  const prevBtns = document.querySelectorAll('.prev');
+  const formSteps = document.querySelectorAll('.form-step');
+  let currentStep = 0;
+
+  nextBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Simple validation
+      const inputs = formSteps[currentStep].querySelectorAll('input');
+      for (let input of inputs) {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          return;
+        }
+      }
+      formSteps[currentStep].classList.remove('active');
+      currentStep++;
+      formSteps[currentStep].classList.add('active');
+    });
+  });
+
+  prevBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      formSteps[currentStep].classList.remove('active');
+      currentStep--;
+      formSteps[currentStep].classList.add('active');
+    });
+  });
+
+  document.getElementById('multiStepForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Form submitted successfully!');
+  });
+
+
+
+
+    // Tab switching
+    const tabs = document.querySelectorAll('.sidebar a');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        tabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        const target = this.getAttribute('data-tab');
+        contents.forEach(c => c.style.display = 'none');
+        const activeContent = document.getElementById(target);
+        if (activeContent) activeContent.style.display = 'block';
+      });
+    });
+
+    // Toggle text Yes/No
+    document.querySelectorAll('.toggle input').forEach(toggle => {
+      toggle.addEventListener('change', function () {
+        const text = this.parentElement.nextElementSibling;
+        text.textContent = this.checked ? 'Yes' : 'No';
+      });
+    });
+  </script>
 </body>
 </html>

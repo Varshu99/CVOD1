@@ -23,5 +23,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.main, name='main'),  # root path
     path('main/', views.main, name='main-page'),  # optional
+
 ]
 
