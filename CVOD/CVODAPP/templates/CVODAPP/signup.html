@@ -13,6 +13,7 @@
         </div>
     {% endif %}
 
+    <!-- User Signup Form -->
     <form method="POST" action="{% url 'signup' %}">
         {% csrf_token %}
         
@@ -34,8 +35,9 @@
             <button type="button" id="toggleConfirmPassword" class="btn btn-outline-secondary position-absolute end-0 top-0 mt-1 me-1" style="height:38px;">👁️</button>
         </div>
 
-        <div class="d-grid">
-            <button type="submit" class="btn btn-primary">Sign Up</button>
+        <div class="d-grid mb-3">
+            <button type="submit" class="btn btn-primary mb-2">Sign Up as User</button>
+            <a href="#" class="btn btn-success">Sign Up as Designation</a>
         </div>
     </form>
 

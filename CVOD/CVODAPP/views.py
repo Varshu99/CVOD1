@@ -12,11 +12,10 @@ def base(request):
 def index(request):
     return render(request, 'CVODAPP/index.html')
 
-# Signin view
 def signin(request):
     if request.user.is_authenticated:
         messages.info(request, "You are already logged in.")
-        return redirect("index")
+        return redirect("main")  # change index → main
 
     if request.method == "POST":
         username = request.POST.get("username")
@@ -27,7 +26,7 @@ def signin(request):
         if user:
             login(request, user)
             messages.success(request, f"Welcome back, {user.username}!")
-            return redirect("index")
+            return redirect("main")  # change index → main
         else:
             messages.error(request, "Invalid username or password.")
 
@@ -94,6 +93,7 @@ def forgot(request):
 
 def main(request):
     return render(request, 'CVODAPP/main.html')
+
 
 # Password reset view
 def resetpass(request, username):

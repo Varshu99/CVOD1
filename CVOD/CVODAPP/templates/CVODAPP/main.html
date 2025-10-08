@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'CVODAPP/base.html' %}
+
+{% block title %}Home - My Django Site{% endblock %}
+
   <title>Freight Offers Settings</title>
+  {% block content %}
   <style>
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 40px;
-    }
+
 
     .container {
           max-width: 85%;
       display: flex;
-      background: white;
+      
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -232,8 +228,10 @@
       margin-left: 21%;
     }
   </style>
-</head>
-<body>
+
+
+
+
   <div class="container">
     <div class="sidebar">
       <a class="active" data-tab="Employee-Management-System">Employee Management System</a>
@@ -692,5 +690,6 @@
       });
     });
   </script>
-</body>
+  {% endblock %}
+
 </html>
